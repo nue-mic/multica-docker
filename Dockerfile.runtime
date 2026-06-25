@@ -20,7 +20,7 @@
 #   docker compose exec runtime multica daemon status
 #   docker compose exec runtime multica login           # 若未通过 MULTICA_TOKEN 登录
 
-ARG MULTICA_SERVER_IMAGE=ghcr.io/mia-clark/multica-server:latest
+ARG MULTICA_SERVER_IMAGE=ghcr.io/nue-mic/multica-server:latest
 
 FROM ${MULTICA_SERVER_IMAGE}
 
