@@ -35,9 +35,9 @@ Multica 采用 **control plane / data plane 分离**设计：
 
 | 镜像 | 角色 | 内容 |
 |---|---|---|
-| `ghcr.io/mia-clark/multica-server` | 控制面 | Go 后端 + `multica` CLI（精简，不含 agent CLI） |
-| `ghcr.io/mia-clark/multica-runtime` | 数据面 | 复用 server 基底 + Node 22 + `claude` / `codex` / `gemini` CLI + runtime 启动脚本（**ENTRYPOINT 即 `multica daemon start`**） |
-| `ghcr.io/mia-clark/multica-web` | 前端 | Next.js standalone |
+| `ghcr.io/nue-mic/multica-server` | 控制面 | Go 后端 + `multica` CLI（精简，不含 agent CLI） |
+| `ghcr.io/nue-mic/multica-runtime` | 数据面 | 复用 server 基底 + Node 22 + `claude` / `codex` / `gemini` CLI + runtime 启动脚本（**ENTRYPOINT 即 `multica daemon start`**） |
+| `ghcr.io/nue-mic/multica-web` | 前端 | Next.js standalone |
 
 > ⚠️ **`multica-server-full` 已 deprecated**。它把 server 和 agent 混在一个容器里违反职责分离。现有 tag 保留不删，但不再构建新版本。迁移指南见文末「从 server-full 迁移」。
 
@@ -49,14 +49,14 @@ Multica 采用 **control plane / data plane 分离**设计：
 
 ```bash
 # 1. 下载编排文件与 .env 模板（二选一）
-curl -O https://raw.githubusercontent.com/mia-clark/multica-docker/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/nue-mic/multica-docker/main/docker-compose.yml
 
 # 🌟 首选：完整模板（含 runtime 接入 + 反代凭据占位）
-curl -O https://raw.githubusercontent.com/mia-clark/multica-docker/main/.env.example.full
+curl -O https://raw.githubusercontent.com/nue-mic/multica-docker/main/.env.example.full
 cp .env.example.full .env
 
 # 🪶 最小：只要跑起来，之后手动 login
-# curl -O https://raw.githubusercontent.com/mia-clark/multica-docker/main/.env.example
+# curl -O https://raw.githubusercontent.com/nue-mic/multica-docker/main/.env.example
 # cp .env.example .env
 
 # 2. 编辑 .env：
@@ -258,12 +258,12 @@ docker compose logs -f --tail=100 runtime   # 多实例日志会合并输出
 ### 产物镜像
 
 ```
-ghcr.io/mia-clark/multica-server:latest
-ghcr.io/mia-clark/multica-server:<short-sha>
-ghcr.io/mia-clark/multica-runtime:latest
-ghcr.io/mia-clark/multica-runtime:<short-sha>
-ghcr.io/mia-clark/multica-web:latest
-ghcr.io/mia-clark/multica-web:<short-sha>
+ghcr.io/nue-mic/multica-server:latest
+ghcr.io/nue-mic/multica-server:<short-sha>
+ghcr.io/nue-mic/multica-runtime:latest
+ghcr.io/nue-mic/multica-runtime:<short-sha>
+ghcr.io/nue-mic/multica-web:latest
+ghcr.io/nue-mic/multica-web:<short-sha>
 ```
 
 按 tag（如 `v0.2.13`）手动触发时，额外推送同名标签。
