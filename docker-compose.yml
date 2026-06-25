@@ -45,7 +45,7 @@ services:
   # 本服务不含 agent CLI，保持最小镜像 / 最小攻击面
   # ------------------------------------------------------------
   server:
-    image: ${SERVER_IMAGE:-ghcr.io/mia-clark/multica-server}:${MULTICA_TAG:-latest}
+    image: ${SERVER_IMAGE:-ghcr.io/nue-mic/multica-server}:${MULTICA_TAG:-latest}
     container_name: multica-server
     restart: always
     depends_on:
@@ -87,7 +87,7 @@ services:
   # 想扩容：docker compose up -d --scale runtime=3
   # ------------------------------------------------------------
   runtime:
-    image: ${RUNTIME_IMAGE:-ghcr.io/mia-clark/multica-runtime}:${MULTICA_TAG:-latest}
+    image: ${RUNTIME_IMAGE:-ghcr.io/nue-mic/multica-runtime}:${MULTICA_TAG:-latest}
     restart: always
     depends_on:
       server:
@@ -134,7 +134,7 @@ services:
       - multica
 
   web:
-    image: ghcr.io/mia-clark/multica-web:${MULTICA_TAG:-latest}
+    image: ghcr.io/nue-mic/multica-web:${MULTICA_TAG:-latest}
     container_name: multica-web
     restart: always
     depends_on:
